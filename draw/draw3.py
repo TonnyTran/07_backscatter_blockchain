@@ -4,8 +4,8 @@ import xlsxwriter
 
 interval = 10
 book = open_workbook('../results/result_v1.2_3ST_200.xls')
-book2 = open_workbook('../results/result_v0.3_3ST_400.xls')
-book3 = open_workbook('../results/result_v0.3_3ST_600.xls')
+book2 = open_workbook('../results/result_v1.2_3ST_500.xls')
+book3 = open_workbook('../results/result_v1.2_3ST_600.xls')
 sheet = book.sheet_by_index(0)
 sheet2 = book2.sheet_by_index(0)
 sheet3 = book3.sheet_by_index(0)
@@ -17,9 +17,9 @@ worksheet = workbook.add_worksheet()
 
 X, Y1, Y2, Y3, Y4, Y1_average, Y2_average, Y3_average, Y4_average = [], [], [], [], [], [], [], [], []
 for row_index in xrange(1, sheet2.nrows):
-    y1 = sheet.cell_value(row_index, 1)
-    y2 = sheet2.cell_value(row_index, 1)
-    y3 = sheet3.cell_value(row_index, 1)
+    y1 = sheet.cell_value(row_index, 2)
+    y2 = sheet2.cell_value(row_index, 2)
+    y3 = sheet3.cell_value(row_index, 2)
     Y1.append(float(y1))
     Y2.append(float(y2))
     Y3.append(float(y3))

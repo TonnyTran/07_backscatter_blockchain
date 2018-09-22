@@ -3,7 +3,7 @@ from xlrd import open_workbook
 import xlsxwriter
 
 interval = 10
-book = open_workbook('../results/result_v1.2_3ST_200.xls')
+book = open_workbook('../results/result_v1.2_3ST_600.xls')
 book2 = open_workbook('../results/result_v1.2_rand.xls')
 book3 = open_workbook('../results/result_v1.2_htt.xls')
 book4 = open_workbook('../results/result_v1.2_back.xls')
@@ -12,7 +12,7 @@ sheet2 = book2.sheet_by_index(0)
 sheet3 = book3.sheet_by_index(0)
 sheet4 = book4.sheet_by_index(0)
 
-file_name = '../result_draw/result_v1.0.xlsx'
+file_name = '../result_draw/result_v1.2.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
 

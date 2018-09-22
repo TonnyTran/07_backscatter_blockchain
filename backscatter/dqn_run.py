@@ -12,6 +12,7 @@ from rl.core import Processor
 from backscatter_env import BackscatterEnv
 from backscatter_env_3 import BackscatterEnv3
 from backscatter_env_4 import BackscatterEnv4
+from backscatter02_env import Backscatter02Env
 
 class BackscatterProcessor(Processor):
     def process_action(self, action):
@@ -21,6 +22,16 @@ class BackscatterProcessor(Processor):
         action = action / (BackscatterEnv.BUSY_TIMESLOT+1)
         harvest = action
         return tuple([harvest, backscatter, transmit])
+
+class Backscatter02Processor(Processor):
+    def process_action(self, action):
+        transmit1 = action % (Backscatter02Env.TIME_FRAME+ 1)
+        action = action / (Backscatter02Env.TIME_FRAME+ 1)
+
+        backscatter1 = action % (Backscatter02Env.TIME_FRAME + 1)
+        action = action / (Backscatter02Env.TIME_FRAME + 1)
+        harvest = action
+        return tuple([harvest, backscatter1, transmit1])
 
 class BackscatterProcessor3(Processor):
     def process_action(self, action):
@@ -78,10 +89,10 @@ print(model.summary())
 memory = SequentialMemory(limit=50000, window_length=1)
 policy = EpsGreedyQPolicy()
 
-version = "1.2_3ST_600"
+version = "2.0_3ST_200"
 nb_steps = 1000000
 nb_max_episode_steps = 200
-anneal_steps = 600000
+anneal_steps = 400000
 processor = BackscatterProcessor3()
 dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, processor=processor, nb_steps_warmup=100,
                target_model_update=1e-2, policy=policy, vary_eps=True, anneal_steps=anneal_steps)
