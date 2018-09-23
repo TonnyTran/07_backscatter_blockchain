@@ -77,9 +77,9 @@ class BackscatterEnv3(gym.Env):
             reward = -10
             throughtput = 0
             datawaiting_before = self.ST1.queue
-            self.ST1.generateData()
-            self.ST2.generateData()
-            self.ST3.generateData()
+            self.ST1.reset()
+            self.ST2.reset()
+            self.ST3.reset()
             datawaiting = self.ST1.queue
             state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
             self.state = tuple(state)
