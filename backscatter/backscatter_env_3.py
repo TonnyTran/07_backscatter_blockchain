@@ -9,7 +9,8 @@ from ST import SecondTransmitor
 
 class BackscatterEnv3(gym.Env):
     TIME_FRAME = 10
-    BUSY_TIMESLOT = 6
+    BUSY_TIMESLOT = 9
+    DATA_RATE = 0.3
 
     def __init__(self):
 
@@ -29,9 +30,9 @@ class BackscatterEnv3(gym.Env):
                                              Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY)))
 
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=0.5)
-        self.ST2 = SecondTransmitor(data_rate=0.5)
-        self.ST3 = SecondTransmitor(data_rate=0.5)
+        self.ST1 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
+        self.ST2 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
+        self.ST3 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
 
         self.viewer = None
         self.state = None
@@ -62,20 +63,32 @@ class BackscatterEnv3(gym.Env):
 
             throughtput = reward
 
+            datawaiting_before = self.ST1.queue
+
+            self.ST1.generateData()
+            self.ST2.generateData()
+            self.ST3.generateData()
+            datawaiting = self.ST1.queue
+
             state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
             self.state = tuple(state)
 
         else:   # in case, assignment is not suitable
             reward = -10
             throughtput = 0
+            datawaiting_before = self.ST1.queue
             self.ST1.generateData()
             self.ST2.generateData()
             self.ST3.generateData()
-            print(np.array(self.state), reward, action)
+            datawaiting = self.ST1.queue
+            state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
+            self.state = tuple(state)
+            print(np.array(self.state), reward, datawaiting, action)
+
 
         done = False
         # print(np.array(self.state), reward, done, {})
-        return np.array(self.state), [reward, throughtput], done, {}
+        return np.array(self.state), [reward, throughtput, datawaiting_before, datawaiting], done, {}
 
     def reset(self):
         self.state = []
@@ -118,7 +131,7 @@ class BackscatterEnv3(gym.Env):
         """
         raise NotImplementedError()
 
-# env = BackscatterEnv()
-# env.reset()
-# for index in range(0, 1000):
-#     env.step(env.action_space.sample())
+env = BackscatterEnv3()
+env.reset()
+for index in range(0, 1000):
+    env.step(env.action_space.sample())

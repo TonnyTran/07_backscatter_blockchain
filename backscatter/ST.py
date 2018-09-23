@@ -46,7 +46,6 @@ class SecondTransmitor():
         self.queue -= data_transfer
         self.energy -= energy_lose
         throughtput += data_transfer
-        self.generateData()
 
         # return number of data transferred
         return throughtput

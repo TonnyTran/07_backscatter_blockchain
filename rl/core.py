@@ -125,6 +125,7 @@ class Agent(object):
         # open workbook to store result
         workbook = xlwt.Workbook()
         sheet = workbook.add_sheet('DQN')
+        sheet_step = workbook.add_sheet('step')
 
         try:
             while self.step < nb_steps:
@@ -213,6 +214,7 @@ class Agent(object):
                 episode_step += 1
                 self.step += 1
 
+
                 if done:
                     # We are in a terminal state but the agent hasn't yet seen it. We therefore
                     # perform one more forward-backward call and simply ignore the action before
@@ -233,8 +235,8 @@ class Agent(object):
                     sheet.write(episode + 1, 0, str(episode))
                     sheet.write(episode + 1, 1, str(episode_reward[0]))
                     sheet.write(episode + 1, 2, str(episode_reward[1]))
-                    # sheet.write(episode + 1, 3, str(episode_reward[2]))
-                    # sheet.write(episode + 1, 4, str(episode_reward[3]))
+                    sheet.write(episode + 1, 3, str(episode_reward[2]))
+                    sheet.write(episode + 1, 4, str(episode_reward[3]))
 
                     episode += 1
                     observation = None
