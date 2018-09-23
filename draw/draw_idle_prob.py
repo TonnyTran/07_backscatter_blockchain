@@ -6,7 +6,7 @@ import numpy as np
 file_name = '../result_draw/result_v3.0.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
-X = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+X = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 book1 = open_workbook('../results/result_v3_09_rand.xls')
 book2 = open_workbook('../results/result_v3_08_rand.xls')
@@ -167,21 +167,78 @@ Y3miner.append(np.mean(Y38))
 Y3miner.append(np.mean(Y39))
 
 
-worksheet.write(1, 2, str(Y3miner[0]))
-worksheet.write(2, 2, str(Y3miner[1]))
-worksheet.write(3, 2, str(Y3miner[2]))
-worksheet.write(4, 2, str(Y3miner[3]))
-worksheet.write(5, 2, str(Y3miner[4]))
-worksheet.write(6, 2, str(Y3miner[5]))
-worksheet.write(7, 2, str(Y3miner[6]))
-worksheet.write(8, 2, str(Y3miner[7]))
-worksheet.write(9, 2, str(Y3miner[8]))
+worksheet.write(1, 3, str(Y3miner[0]))
+worksheet.write(2, 3, str(Y3miner[1]))
+worksheet.write(3, 3, str(Y3miner[2]))
+worksheet.write(4, 3, str(Y3miner[3]))
+worksheet.write(5, 3, str(Y3miner[4]))
+worksheet.write(6, 3, str(Y3miner[5]))
+worksheet.write(7, 3, str(Y3miner[6]))
+worksheet.write(8, 3, str(Y3miner[7]))
+worksheet.write(9, 3, str(Y3miner[8]))
 
 print(Y3miner)
 plt.plot(X, Y3miner, 'g^-', label="Backscatter policy", zorder=10)
 
+# book41 = open_workbook('../results/result_v3_09_ST3.xls')
+# book42 = open_workbook('../results/result_v3_08_ST3.xls')
+# book43 = open_workbook('../results/result_v3_07_ST3.xls')
+# book44 = open_workbook('../results/result_v3_06_ST3.xls')
+# book45 = open_workbook('../results/result_v3_05_ST3.xls')
+# book46 = open_workbook('../results/result_v3_04_ST3.xls')
+# book47 = open_workbook('../results/result_v3_03_ST3.xls')
+# book48 = open_workbook('../results/result_v3_02_ST3.xls')
+# book49 = open_workbook('../results/result_v3_01_ST3.xls')
+#
+# sheet41 = book41.sheet_by_index(0)
+# sheet42 = book42.sheet_by_index(0)
+# sheet43 = book43.sheet_by_index(0)
+# sheet44 = book44.sheet_by_index(0)
+# sheet45 = book45.sheet_by_index(0)
+# sheet46 = book46.sheet_by_index(0)
+# sheet47 = book47.sheet_by_index(0)
+# sheet48 = book48.sheet_by_index(0)
+# sheet49 = book49.sheet_by_index(0)
+#
+# Y4miner = []
+# Y41, Y42, Y43, Y44, Y45, Y46, Y47, Y48, Y49 = [], [], [], [], [], [], [], [], []
+# for row_index in xrange(1, 50):
+#     Y41.append(float(sheet41.cell_value(row_index, 1)))
+#     Y42.append(float(sheet42.cell_value(row_index, 1)))
+#     Y43.append(float(sheet43.cell_value(row_index, 1)))
+#     Y44.append(float(sheet44.cell_value(row_index, 1)))
+#     Y45.append(float(sheet45.cell_value(row_index, 1)))
+#     Y46.append(float(sheet46.cell_value(row_index, 1)))
+#     Y47.append(float(sheet47.cell_value(row_index, 1)))
+#     Y48.append(float(sheet48.cell_value(row_index, 1)))
+#     Y49.append(float(sheet49.cell_value(row_index, 1)))
+#
+# Y4miner.append(np.mean(Y41))
+# Y4miner.append(np.mean(Y42))
+# Y4miner.append(np.mean(Y43))
+# Y4miner.append(np.mean(Y44))
+# Y4miner.append(np.mean(Y45))
+# Y4miner.append(np.mean(Y46))
+# Y4miner.append(np.mean(Y47))
+# Y4miner.append(np.mean(Y48))
+# Y4miner.append(np.mean(Y49))
+#
+#
+# worksheet.write(1, 4, str(Y4miner[0]))
+# worksheet.write(2, 4, str(Y4miner[1]))
+# worksheet.write(3, 4, str(Y4miner[2]))
+# worksheet.write(4, 4, str(Y4miner[3]))
+# worksheet.write(5, 4, str(Y4miner[4]))
+# worksheet.write(6, 4, str(Y4miner[5]))
+# worksheet.write(7, 4, str(Y4miner[6]))
+# worksheet.write(8, 4, str(Y4miner[7]))
+# worksheet.write(9, 4, str(Y4miner[8]))
+#
+# print(Y4miner)
+# plt.plot(X, Y4miner, 'y^-', label="DQN policy", zorder=10)
 
-plt.xlabel('The idle chanel probability')
+
+plt.xlabel('Number of idle time slots per time frame')
 plt.legend()
 plt.show()
 workbook.close()

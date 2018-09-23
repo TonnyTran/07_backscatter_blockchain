@@ -89,7 +89,7 @@ print(model.summary())
 memory = SequentialMemory(limit=50000, window_length=1)
 policy = EpsGreedyQPolicy()
 
-version = "3.0_3ST_09"
+version = "3_04_3ST"
 nb_steps = 1000000
 nb_max_episode_steps = 200
 anneal_steps = 400000

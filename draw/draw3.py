@@ -3,9 +3,9 @@ from xlrd import open_workbook
 import xlsxwriter
 
 interval = 10
-book = open_workbook('../results/result_v3.0_3ST_01.xls')
-book2 = open_workbook('../results/result_v3.0_3ST_07.xls')
-book3 = open_workbook('../results/result_v3.0_3ST_02.xls')
+book = open_workbook('../results/result_v3_01_3ST.xls')
+book2 = open_workbook('../results/result_v3_02_3ST.xls')
+book3 = open_workbook('../results/result_v3_09_3ST.xls')
 sheet = book.sheet_by_index(0)
 sheet2 = book2.sheet_by_index(0)
 sheet3 = book3.sheet_by_index(0)
