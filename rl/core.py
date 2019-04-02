@@ -133,6 +133,7 @@ class Agent(object):
                     callbacks.on_episode_begin(episode)
                     episode_step = np.int16(0)
                     episode_reward = np.float32(0)
+                    negative_reward = np.int16(0)
 
                     # Obtain the initial observation by resetting the environment.
                     self.reset_states()
@@ -201,6 +202,8 @@ class Agent(object):
                     done = True
                 metrics = self.backward(reward[0], terminal=done)
                 episode_reward += reward
+                if reward[0] < 0:
+                    negative_reward += 1
 
                 step_logs = {
                     'action': action,
@@ -214,7 +217,24 @@ class Agent(object):
                 episode_step += 1
                 self.step += 1
 
-
+                # if (500000 <= self.step < 560000):
+                #     sheet_step.write(self.step - 499999, 0, str(self.step - 499999))
+                #     sheet_step.write(self.step - 499999, 1, str(r[4]))
+                #     sheet_step.write(self.step - 499999, 2, str(r[5]))
+                #     sheet_step.write(self.step - 499999, 3, str(r[6]))
+                #     sheet_step.write(self.step - 499999, 4, str(r[7]))
+                #     sheet_step.write(self.step - 499999, 5, str(r[8]))
+                #     sheet_step.write(self.step - 499999, 6, str(r[9]))
+                #     sheet_step.write(self.step - 499999, 7, str(r[10]))
+                #     sheet_step.write(self.step - 499999, 8, str(r[11]))
+                #     sheet_step.write(self.step - 499999, 9, str(r[12]))
+                #     sheet_step.write(self.step - 499999, 10, str(r[13]))
+                #     sheet_step.write(self.step - 499999, 11, str(r[14]))
+                #     sheet_step.write(self.step - 499999, 12, str(r[15]))
+                #     sheet_step.write(self.step - 499999, 13, str(r[16]))
+                #     sheet_step.write(self.step - 499999, 14, str(r[17]))
+                #     sheet_step.write(self.step - 499999, 15, str(r[18]))
+                #
                 if done:
                     # We are in a terminal state but the agent hasn't yet seen it. We therefore
                     # perform one more forward-backward call and simply ignore the action before
@@ -236,12 +256,14 @@ class Agent(object):
                     sheet.write(episode + 1, 1, str(episode_reward[0]))
                     sheet.write(episode + 1, 2, str(episode_reward[1]))
                     sheet.write(episode + 1, 3, str(episode_reward[2]))
-                    sheet.write(episode + 1, 4, str(episode_reward[3]))
+                    sheet.write(episode + 1, 4, str(float(episode_reward[2]) / episode_reward[1]))
+                    print(negative_reward)
 
                     episode += 1
                     observation = None
                     episode_step = None
                     episode_reward = None
+                    negative_reward = 0
         except KeyboardInterrupt:
             # We catch keyboard interrupts here so that training can be be safely aborted.
             # This is so common that we've built this right into this function, which ensures that

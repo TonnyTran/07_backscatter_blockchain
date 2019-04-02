@@ -9,10 +9,8 @@ from rl.core import Agent
 from rl.policy import EpsGreedyQPolicy, GreedyQPolicy
 from rl.util import *
 
-
 def mean_q(y_true, y_pred):
     return K.mean(K.max(y_pred, axis=-1))
-
 
 class AbstractDQNAgent(Agent):
     """Write me
@@ -101,7 +99,7 @@ class DQNAgent(AbstractDQNAgent):
  
     """
     def __init__(self, model, policy=None, test_policy=None, enable_double_dqn=True, enable_dueling_network=False,
-                 dueling_type='avg', vary_eps=True, anneal_steps=None, *args, **kwargs):
+                 dueling_type='avg', vary_eps=True, strategy='linear', anneal_steps=None, *args, **kwargs):
         super(DQNAgent, self).__init__(*args, **kwargs)
 
         # Validate (important) input.
@@ -150,12 +148,13 @@ class DQNAgent(AbstractDQNAgent):
         self.test_policy = test_policy
 
         # eGreedy parameters
-        self.init_exp = 0.8
+        self.init_exp = 0.9
         self.final_exp = 0.0
         self.exploration = self.init_exp
         self.anneal_steps = anneal_steps
         # vary epsilon greedy policy
         self.vary_eps = vary_eps
+        self.strategy = strategy
 
         # State.
         self.reset_states()
@@ -235,10 +234,10 @@ class DQNAgent(AbstractDQNAgent):
         state = self.memory.get_recent_state(observation)
         q_values = self.compute_q_values(state)
         if self.training:
-            if (self.vary_eps):
-                self.annealExploration()
-                action = self.policy.select_action_vary(q_values=q_values, eps=(self.exploration))
-                if (self.exploration == 0):
+            if self.vary_eps:
+                self.annealExploration(self.strategy)
+                action = self.policy.select_action_vary(q_values=q_values, eps=self.exploration)
+                if self.exploration == 0:
                     self.training = False
             else:
                 action = self.policy.select_action(q_values=q_values)
@@ -383,9 +382,13 @@ class DQNAgent(AbstractDQNAgent):
         self.__test_policy._set_agent(self)
 
 
-    def annealExploration(self, stategy='linear'):
+    def annealExploration(self, strategy='linear'):
         ratio = max((self.anneal_steps - self.step) / float(self.anneal_steps), 0)
-        self.exploration = (self.init_exp - self.final_exp) * ratio + self.final_exp
+        if strategy == 'linear':
+            self.exploration = (self.init_exp - self.final_exp) * ratio + self.final_exp
+        elif strategy == 'exponential':
+            self.exploration = (self.init_exp - self.final_exp) * (ratio ** 2) + self.final_exp
+
 
 
 class NAFLayer(Layer):

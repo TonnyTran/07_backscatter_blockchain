@@ -9,66 +9,45 @@ from rl.agents.dqn import DQNAgent
 from rl.policy import BoltzmannQPolicy, MaxBoltzmannQPolicy, EpsGreedyQPolicy
 from rl.memory import SequentialMemory
 from rl.core import Processor
-from backscatter_env import BackscatterEnv
-from backscatter_env_3 import BackscatterEnv3
-from backscatter_env_4 import BackscatterEnv4
-from backscatter02_env import Backscatter02Env
-
-class BackscatterProcessor(Processor):
-    def process_action(self, action):
-        transmit = action % (BackscatterEnv.TIME_FRAME - BackscatterEnv.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv.TIME_FRAME - BackscatterEnv.BUSY_TIMESLOT+1)
-        backscatter = action % (BackscatterEnv.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv.BUSY_TIMESLOT+1)
-        harvest = action
-        return tuple([harvest, backscatter, transmit])
-
-class Backscatter02Processor(Processor):
-    def process_action(self, action):
-        transmit1 = action % (Backscatter02Env.TIME_FRAME+ 1)
-        action = action / (Backscatter02Env.TIME_FRAME+ 1)
-
-        backscatter1 = action % (Backscatter02Env.TIME_FRAME + 1)
-        action = action / (Backscatter02Env.TIME_FRAME + 1)
-        harvest = action
-        return tuple([harvest, backscatter1, transmit1])
+from backscatter_env_3 import BackscatterBlockchainEnv3
 
 class BackscatterProcessor3(Processor):
     def process_action(self, action):
-        transmit2 = action % (BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT+1)
-        transmit1 = action % (BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT + 1)
+        action_trans = action % BackscatterBlockchainEnv3.MAX_NB_ACT_TRANS
+        action_back = action / BackscatterBlockchainEnv3.MAX_NB_ACT_TRANS
 
-        backscatter2 = action % (BackscatterEnv3.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv3.BUSY_TIMESLOT+1)
-        backscatter1 = action % (BackscatterEnv3.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv3.BUSY_TIMESLOT + 1)
-        harvest = action
-        return tuple([harvest, backscatter1, backscatter2, transmit1, transmit2])
+        backscatter1, backscatter2, backscatter3 = self.decode_action(BackscatterBlockchainEnv3.MAX_BACK, action_back)
+        transmit1, transmit2, transmit3 = self.decode_action(BackscatterBlockchainEnv3.MAX_TRANS, action_trans)
 
-class BackscatterProcessor4(Processor):
-    def process_action(self, action):
-        transmit3 = action % (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT + 1)
-        transmit2 = action % (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT+1)
-        transmit1 = action % (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv4.TIME_FRAME - BackscatterEnv4.BUSY_TIMESLOT + 1)
+        return tuple([backscatter1, backscatter2, backscatter3, transmit1, transmit2, transmit3])
 
-        backscatter3 = action % (BackscatterEnv4.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv4.BUSY_TIMESLOT + 1)
-        backscatter2 = action % (BackscatterEnv4.BUSY_TIMESLOT+1)
-        action = action / (BackscatterEnv4.BUSY_TIMESLOT+1)
-        backscatter1 = action % (BackscatterEnv4.BUSY_TIMESLOT + 1)
-        action = action / (BackscatterEnv4.BUSY_TIMESLOT + 1)
-        harvest = action
-        return tuple([harvest, backscatter1, backscatter2, backscatter3, transmit1, transmit2, transmit3])
+    def find_third_element(self, number):
+        i = 0
+        while number >= i * (i+1) * (i+2) / 6:
+            i += 1
+        return i - 1
 
-ENV_NAME = 'back_scatter'
+    def find_second_element(self, number):
+        i = 0
+        while number >= i * (i+1) / 2:
+            i += 1
+        return i - 1
+
+    def decode_action(self, max_action, action_nb):
+        third_element = self.find_third_element(action_nb)
+        action1 = max_action - third_element
+        action_nb = action_nb - third_element * (third_element + 1) * (third_element + 2) / 6
+        second_element = self.find_second_element(action_nb)
+        action2 = max_action - action1 - second_element
+        action_nb = action_nb - second_element * (second_element + 1) / 2
+        first_element = action_nb
+        action3 = max_action - action1 - action2 - first_element
+        return action1, action2, action3
+
+ENV_NAME = 'backscatter_blockchain'
 
 # Get the environment and extract the number of actions.
-env = BackscatterEnv3()
+env = BackscatterBlockchainEnv3()
 np.random.seed(123)
 # env.seed(123)
 nb_actions = env.nb_actions
@@ -89,13 +68,13 @@ print(model.summary())
 memory = SequentialMemory(limit=50000, window_length=1)
 policy = EpsGreedyQPolicy()
 
-version = "3_04_3ST"
-nb_steps = 1000000
+version = "4.0_05"
+nb_steps = 2000000
 nb_max_episode_steps = 200
-anneal_steps = 400000
+anneal_steps = 1000000
 processor = BackscatterProcessor3()
 dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, processor=processor, nb_steps_warmup=100,
-               target_model_update=1e-2, policy=policy, vary_eps=True, anneal_steps=anneal_steps)
+               target_model_update=1e-2, policy=policy, vary_eps=True, strategy='exponential', anneal_steps=anneal_steps)
 dqn.compile(Adam(lr=1e-3), metrics=['mae'])
 
 # Okay, now it's time to learn something! We visualize the training here for show, but this

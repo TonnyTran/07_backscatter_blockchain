@@ -2,12 +2,12 @@ from __future__ import print_function
 from collections import deque
 from rl.agents.tabular_q_learner import QLearner
 import numpy as np
-from blockchain_networking_env import BlockchainNetworkingEnv
-from mempool import Mempool
 import xlwt
 
-ENV_NAME = 'BlockChain_Networking'
-env = BlockchainNetworkingEnv()
+ENV_NAME = 'back_scatter'
+
+# Get the environment and extract the number of actions.
+env = BackscatterEnv3()
 
 def digitalizeState(observation, env=None):
     state = 0

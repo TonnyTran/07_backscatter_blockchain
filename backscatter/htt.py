@@ -1,65 +1,74 @@
-from backscatter_env import BackscatterEnv
-from ST import SecondTransmitor
 import xlwt
-import random
 import numpy as np
+from backscatter_env_3 import BackscatterBlockchainEnv3
+from rl.core import Processor
 
-TIME_FRAME = 10
-BUSY_TIMESLOT = 9
-DATA_RATE = 0.3
-
-version = "3_09"
-nb_steps = 10000
+version = "3.0"
+nb_steps = 2000000
 nb_max_episode_steps = 200
 
-class HTTenv():
-    def __init__(self):
-        self.ST1 = SecondTransmitor(data_rate=DATA_RATE)
-        self.ST2 = SecondTransmitor(data_rate=DATA_RATE)
-        self.ST3 = SecondTransmitor(data_rate=DATA_RATE)
+class BackscatterProcessor3(Processor):
+    def process_action(self, action):
+        action_trans = action % BackscatterBlockchainEnv3.MAX_NB_ACT_TRANS
+        action_back = action / BackscatterBlockchainEnv3.MAX_NB_ACT_TRANS
 
-    def step(self):
-        backscatter_time_1 = 0
-        # transmit_time_1 = random.randint(0, TIME_FRAME - BUSY_TIMESLOT)
-        transmit_time_1 = random.randint(0, TIME_FRAME - BUSY_TIMESLOT) / 3
-        backscatter_time_2 = 0
-        transmit_time_2 = random.randint(0, TIME_FRAME - BUSY_TIMESLOT) / 3
-        backscatter_time_3 = 0
-        transmit_time_3 = TIME_FRAME - BUSY_TIMESLOT - transmit_time_1 - transmit_time_2
-        reward = 0
-        if ((backscatter_time_2 >= 0) and (transmit_time_2 >= 0)):
-            harvest_time_1 = BUSY_TIMESLOT
-            harvest_time_2 = BUSY_TIMESLOT
-            harvest_time_3 = BUSY_TIMESLOT
+        backscatter1, backscatter2, backscatter3 = self.decode_action(BackscatterBlockchainEnv3.MAX_BACK, action_back)
+        transmit1, transmit2, transmit3 = self.decode_action(BackscatterBlockchainEnv3.MAX_TRANS, action_trans)
 
-            reward += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
-            reward += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
-            reward += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
-            datawaiting_before = self.ST1.queue
-            self.ST1.generateData()
-            self.ST2.generateData()
-            self.ST3.generateData()
-            datawaiting = self.ST1.queue
-        # print reward
-        return [reward, datawaiting_before, datawaiting]
+        return [backscatter1, backscatter2, backscatter3, transmit1, transmit2, transmit3]
 
-env = HTTenv()
+    def find_third_element(self, number):
+        i = 0
+        while number >= i * (i+1) * (i+2) / 6:
+            i += 1
+        return i - 1
+
+    def find_second_element(self, number):
+        i = 0
+        while number >= i * (i+1) / 2:
+            i += 1
+        return i - 1
+
+    def decode_action(self, max_action, action_nb):
+        third_element = self.find_third_element(action_nb)
+        action1 = max_action - third_element
+        action_nb = action_nb - third_element * (third_element + 1) * (third_element + 2) / 6
+        second_element = self.find_second_element(action_nb)
+        action2 = max_action - action1 - second_element
+        action_nb = action_nb - second_element * (second_element + 1) / 2
+        first_element = action_nb
+        action3 = max_action - action1 - action2 - first_element
+        return action1, action2, action3
+
+ENV_NAME = 'backscatter_blockchain'
+
+# Get the environment and extract the number of actions.
+env = BackscatterBlockchainEnv3()
+nb_actions = env.nb_actions
+processor = BackscatterProcessor3()
 step = 1
 episode = 1
 # open workbook to store result
 workbook = xlwt.Workbook()
 sheet = workbook.add_sheet('DQN')
-while (step < nb_steps -1):
+while step < nb_steps - 1:
     episode_reward = np.float32(0)
-    while ((step % nb_max_episode_steps) != 0):
-        episode_reward += env.step()
+    while (step % nb_max_episode_steps) != 0:
+        action_nb = np.random.random_integers(0, nb_actions-1)
+        action = processor.process_action(action_nb)
+        action[0] = 0
+        action[1] = 0
+        action[2] = 0
+        observation, reward, done, info = env.step(action)
+        episode_reward += reward
         step += 1
     sheet.write(episode, 0, str(episode))
     sheet.write(episode, 1, str(episode_reward[0]))
     sheet.write(episode, 2, str(episode_reward[1]))
     sheet.write(episode, 3, str(episode_reward[2]))
-    print (episode, episode_reward)
+    sheet.write(episode, 4, str(float(episode_reward[2])/episode_reward[1]))
+    print (episode, episode_reward[0], episode_reward[1], episode_reward[2], float(episode_reward[2])/episode_reward[1])
     step += 1
     episode += 1
-file_name = 'result_v' + version + '_htt'
+file_name = 'result_htt_v' + version
 workbook.save('../results/' + file_name + '.xls')

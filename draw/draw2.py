@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 from xlrd import open_workbook
 import xlsxwriter
 
-book = open_workbook('../results/result_v0.3_3ST_600.xls')
-book2 = open_workbook('../results/result_v1.2_3ST_200.xls')
+book = open_workbook('../results/result_rand_v6.0.xls')
+book2 = open_workbook('../results/result_v0.2.xls')
 
 file_name = '../result_draw/result_v1.0.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
@@ -16,13 +16,13 @@ interval = 10
 # read header values into the list
 # DDQNkeys = [sheet.cell(0, col_index).value for col_index in xrange(sheet.ncols)]
 X, Y, Y2, Y_average, Y2_average = [], [], [], [], []
-for row_index in xrange(1, sheet.nrows):
+for row_index in xrange(1, min(sheet.nrows, sheet2.nrows)):
     x = sheet2.cell_value(row_index, 0)
     if row_index < sheet.nrows:
-        y = sheet.cell_value(row_index, 1)
+        y = sheet.cell_value(row_index, 2)
     else:
         y = 0
-    y2 = sheet2.cell_value(row_index, 1)
+    y2 = sheet2.cell_value(row_index, 2)
 
     Y.append(float(y))
     Y2.append(float(y2))

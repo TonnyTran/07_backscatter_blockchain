@@ -1,38 +1,62 @@
 import gym
-from gym import spaces, logger
 from gym.utils import seeding
 import numpy as np
 from action_space import ActionSpace
 from state_space import StateSpace
 from gym.spaces import Discrete
 from ST import SecondTransmitor
+from mempool import Mempool, Transaction, Block
+import random
 
-class BackscatterEnv3(gym.Env):
+class BackscatterBlockchainEnv3(gym.Env):
+
+    # Network constants
     TIME_FRAME = 10
-    BUSY_TIMESLOT = 4
-    DATA_RATE = 0.3
+    BUSY_TIMESLOT = 3
+    DATA_RATE = 0.5
+    MAX_BACK = BUSY_TIMESLOT
+    MAX_TRANS = TIME_FRAME - BUSY_TIMESLOT
+    MAX_NB_ACT_BACK = (MAX_BACK + 1) * (MAX_BACK + 2) * (MAX_BACK + 3) / 6
+    MAX_NB_ACT_TRANS = (MAX_TRANS + 1) * (MAX_TRANS + 2) * (MAX_TRANS + 3) / 6
+
+    # Blockchain Constants
+    SUCCESS_RATE = 3
+    HASHRATE = 0.00
 
     def __init__(self):
 
         # System parameters
         self.nb_ST = 3
-        self.state_size = 2 * self.nb_ST
-        self.nb_actions = (BackscatterEnv3.BUSY_TIMESLOT+1) ** 3 * (BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT+1)**2
+        self.state_size = 2 * self.nb_ST + Mempool.NB_FEE_INTERVALS
+        self.nb_actions = BackscatterBlockchainEnv3.MAX_NB_ACT_BACK * BackscatterBlockchainEnv3.MAX_NB_ACT_TRANS
 
-        self.action_space = ActionSpace((Discrete(BackscatterEnv3.BUSY_TIMESLOT+1),
-                                         Discrete(BackscatterEnv3.BUSY_TIMESLOT+1),
-                                         Discrete(BackscatterEnv3.BUSY_TIMESLOT + 1),
-                                         Discrete(BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT + 1),
-                                         Discrete(BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT+1)))
+        # Blockchain parameters
+        self.mempool = Mempool()
+        self.userTransaction = Transaction(random.randint(0, Mempool.TRANSACTION_SIZE_CREATED))
+        self.lastBlock = Block()
+        self.hashRate = BackscatterBlockchainEnv3.HASHRATE
+        self.doubleSpendSuccess = None
 
+        # define action space
+        self.action_space = ActionSpace((Discrete(BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1),
+                                         Discrete(BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1),
+                                         Discrete(BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1),
+                                         Discrete(BackscatterBlockchainEnv3.TIME_FRAME - BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1),
+                                         Discrete(BackscatterBlockchainEnv3.TIME_FRAME - BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1),
+                                         Discrete(BackscatterBlockchainEnv3.TIME_FRAME - BackscatterBlockchainEnv3.BUSY_TIMESLOT + 1)))
+
+        # define state space
         self.observation_space = StateSpace((Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY),
                                              Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY),
-                                             Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY)))
+                                             Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY),
+                                             Discrete(Mempool.MAX_SIZE), Discrete(Mempool.MAX_SIZE),
+                                             Discrete(Mempool.MAX_SIZE), Discrete(Mempool.MAX_SIZE),
+                                             Discrete(Mempool.MAX_SIZE)))
 
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
-        self.ST2 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
-        self.ST3 = SecondTransmitor(data_rate=BackscatterEnv3.DATA_RATE)
+        self.ST1 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
+        self.ST2 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
+        self.ST3 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
 
         self.viewer = None
         self.state = None
@@ -44,39 +68,79 @@ class BackscatterEnv3(gym.Env):
 
     def step(self, action):
         assert self.action_space.contains(action), "%r (%s) invalid"%(action, type(action))
-        harvest = action[0]
-        backscatter_time_1 = action[1]
-        backscatter_time_2 = action[2]
+
+        self.reward = 0
+        self.attacked = False
+        data_transmitted = 0
+
+        backscatter_time_1 = action[0]
+        backscatter_time_2 = action[1]
+        backscatter_time_3 = action[2]
         transmit_time_1 = action[3]
         transmit_time_2 = action[4]
-        backscatter_time_3 = BackscatterEnv3.BUSY_TIMESLOT - harvest - backscatter_time_1 - backscatter_time_2
-        transmit_time_3 = BackscatterEnv3.TIME_FRAME - BackscatterEnv3.BUSY_TIMESLOT - transmit_time_1 - transmit_time_2
-        reward = 0
-        if((backscatter_time_3 >= 0) and (transmit_time_3 >= 0)):
-            harvest_time_1 = BackscatterEnv3.BUSY_TIMESLOT - backscatter_time_1
-            harvest_time_2 = BackscatterEnv3.BUSY_TIMESLOT - backscatter_time_2
-            harvest_time_3 = BackscatterEnv3.BUSY_TIMESLOT - backscatter_time_3
+        transmit_time_3 = action[5]
+        harvest = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1 - backscatter_time_2 - backscatter_time_3
+        idle_time = BackscatterBlockchainEnv3.TIME_FRAME - BackscatterBlockchainEnv3.BUSY_TIMESLOT - transmit_time_1 - transmit_time_2 - transmit_time_3
 
-            reward += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
-            reward += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
-            reward += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
+        queue1 = self.ST1.queue
+        energy1 = self.ST1.energy
+        queue2 = self.ST2.queue
+        energy2 = self.ST2.energy
+        queue3 = self.ST3.queue
+        energy3 = self.ST3.energy
+        if(harvest >= 0) and (idle_time >= 0):
+            harvest_time_1 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1
+            harvest_time_2 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_2
+            harvest_time_3 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_3
 
-            throughtput = reward
+            # Step 1: data is transmitted to gateway
+            data_transmitted += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
+            data_transmitted += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
+            data_transmitted += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
 
-            datawaiting_before = self.ST1.queue
+            # Step 2: User's transaction initialization
+            self.userTransaction = Transaction(data_transmitted)
+            self.userTransaction.estimateFeeRate(self.lastBlock)
+            self.mempool.addTransaction(self.userTransaction)
 
+            # Step 3: Mempool updates - some new transactions come
+            self.mempool.generateNewTransactions()
+
+            # Step 4: Miners start mining process, transactions which are included in Block will be removed from mempool
+            self.lastBlock.mineBlock(self.mempool)
+            transactionFee = self.userTransaction.data_size * self.userTransaction.feeRate
+
+            # Step 5: Attack process
+            self.doubleSpendSuccess = 2 * self.hashRate
+            if np.random.rand() < self.doubleSpendSuccess:
+                self.attacked = True
+
+            # if user's transaction is successfully added in the block and not attacked -> reward success
+            if self.userTransaction in self.lastBlock.blockTransaction and not self.attacked:
+                self.reward = BackscatterBlockchainEnv3.SUCCESS_RATE * self.userTransaction.data_size - transactionFee
+            else:
+                self.reward = - transactionFee
+                data_transmitted = 0
+
+            # Step 6: environment is updated
             self.ST1.generateData()
             self.ST2.generateData()
             self.ST3.generateData()
-            datawaiting = self.ST1.queue
 
-            state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
+            self.mempool.updateMempoolState()
+
+            state = [self.ST1.queue, self.ST1.energy,
+                     self.ST2.queue, self.ST2.energy,
+                     self.ST3.queue, self.ST3.energy,
+                     self.mempool.mempoolState[0], self.mempool.mempoolState[1],
+                     self.mempool.mempoolState[2], self.mempool.mempoolState[3],
+                     self.mempool.mempoolState[4]]
             self.state = tuple(state)
 
         else:   # in case, assignment is not suitable
-            reward = -10
-            throughtput = 0
-            datawaiting_before = self.ST1.queue
+            self.reward = -20
+            data_transmitted = 0
+            transactionFee = 0
             if (self.ST1.queue == SecondTransmitor.QUEUE and self.ST2.queue == SecondTransmitor.QUEUE
                 and self.ST3.queue == SecondTransmitor.QUEUE):
                 self.ST1.reset()
@@ -86,22 +150,36 @@ class BackscatterEnv3(gym.Env):
                 self.ST1.generateData()
                 self.ST2.generateData()
                 self.ST3.generateData()
-            datawaiting = self.ST1.queue
-            state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
+            state = [self.ST1.queue, self.ST1.energy,
+                     self.ST2.queue, self.ST2.energy,
+                     self.ST3.queue, self.ST3.energy,
+                     self.mempool.mempoolState[0], self.mempool.mempoolState[1],
+                     self.mempool.mempoolState[2], self.mempool.mempoolState[3],
+                     self.mempool.mempoolState[4]]
             self.state = tuple(state)
-            print(np.array(self.state), reward, datawaiting, action)
-
 
         done = False
         # print(np.array(self.state), reward, done, {})
-        return np.array(self.state), [reward, throughtput, datawaiting_before, datawaiting], done, {}
+        return np.array(self.state), [self.reward, data_transmitted, transactionFee,
+                                      queue1, energy1, BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1,
+                                      backscatter_time_1, transmit_time_1,
+                                      queue2, energy2, BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_2,
+                                      backscatter_time_2, transmit_time_2,
+                                      queue3, energy3, BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_3,
+                                      backscatter_time_3, transmit_time_3], done, {}
 
     def reset(self):
         self.state = []
         self.ST1.reset()
         self.ST2.reset()
         self.ST3.reset()
-        state = [self.ST1.queue, self.ST1.energy, self.ST2.queue, self.ST2.energy, self.ST3.queue, self.ST3.energy]
+        self.mempool.resetMempool()
+        state = [self.ST1.queue, self.ST1.energy,
+                 self.ST2.queue, self.ST2.energy,
+                 self.ST3.queue, self.ST3.energy,
+                 self.mempool.mempoolState[0], self.mempool.mempoolState[1],
+                 self.mempool.mempoolState[2], self.mempool.mempoolState[3],
+                 self.mempool.mempoolState[4]]
         self.state = tuple(state)
         print(self.state)
         self.steps_beyond_done = None
