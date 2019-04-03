@@ -2,51 +2,40 @@ import matplotlib.pyplot as plt
 from xlrd import open_workbook
 import xlsxwriter
 
-book = open_workbook('../results/result_rand_v6.0.xls')
-book2 = open_workbook('../results/result_v0.2.xls')
-
-file_name = '../result_draw/result_v1.0.xlsx'
-workbook = xlsxwriter.Workbook(file_name)
-worksheet = workbook.add_worksheet()
-
+interval = 20
+book = open_workbook('../results/result_v1.0.xls')
+book2 = open_workbook('../results/result_v1.0_8_QL.xls')
 sheet = book.sheet_by_index(0)
 sheet2 = book2.sheet_by_index(0)
-interval = 10
 
-# read header values into the list
-# DDQNkeys = [sheet.cell(0, col_index).value for col_index in xrange(sheet.ncols)]
-X, Y, Y2, Y_average, Y2_average = [], [], [], [], []
-for row_index in xrange(1, min(sheet.nrows, sheet2.nrows)):
-    x = sheet2.cell_value(row_index, 0)
-    if row_index < sheet.nrows:
-        y = sheet.cell_value(row_index, 2)
-    else:
-        y = 0
-    y2 = sheet2.cell_value(row_index, 2)
+file_name = '../result_draw/convergence.xlsx'
+workbook = xlsxwriter.Workbook(file_name)
+worksheet = workbook.add_worksheet()
+column = 1
 
-    Y.append(float(y))
+nbrows = min(sheet.nrows, sheet2.nrows)
+
+X, Y1, Y2, Y3, Y4, Y1_average, Y2_average= [], [], [], [], [], [], []
+for row_index in xrange(1, nbrows):
+    y1 = sheet.cell_value(row_index, column)
+    y2 = sheet2.cell_value(row_index, column)
+    Y1.append(float(y1))
     Y2.append(float(y2))
 
-    # X.append(int(x))
-
-for ave_index in range(0, len(Y)/interval-1):
-    Y_ave = sum(Y[ave_index*interval:((ave_index+1)*interval)]) / interval
-    Y_average.append(Y_ave)
-    Y2_ave = sum(Y2[ave_index * interval:((ave_index + 1) * interval)]) / interval
+for ave_index in range(0, len(Y1)/interval-1):
+    Y1_ave = sum(Y1[ave_index*interval:((ave_index+1)*interval)]) / interval/200
+    Y1_average.append(Y1_ave)
+    Y2_ave = sum(Y2[ave_index * interval:((ave_index + 1) * interval)]) / interval/200
     Y2_average.append(Y2_ave)
     X.append(ave_index)
     worksheet.write(ave_index + 1, 0, str(ave_index))
-    worksheet.write(ave_index + 1, 1, str(Y_ave))
+    worksheet.write(ave_index + 1, 1, str(Y1_ave))
     worksheet.write(ave_index + 1, 2, str(Y2_ave))
 
 workbook.close()
-print(X)
-print(Y)
-print(Y2)
-plt.xlabel('Number of episodes')
-plt.ylabel('Total reward')
-plt.plot(X, Y_average, 'b', label="Single idle channel", zorder=10)
-plt.plot(X, Y2_average, 'r', label="Multi idle channel", zorder=10)
-
+plt.xlabel('x' + str(interval) + 'Number of episodes')
+plt.ylabel('Transaction fee per data unit')
+plt.plot(X, Y1_average, 'r', label="DQN", zorder=10)
+plt.plot(X, Y2_average, 'b', label="QL", zorder=10)
 plt.legend()
 plt.show()

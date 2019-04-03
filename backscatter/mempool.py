@@ -8,11 +8,11 @@ import math
 class Mempool():
     DEFAUT_FEE_RATE = 0.05
     MAX_FEE_RATE = 1.0
-    NB_FEE_INTERVALS = 5
-    MAX_SIZE = 50       # capacity of data units
-    BLOCK_SIZE = 30     # data units
-    NB_TRANSACTION_CREATED = 5
-    TRANSACTION_SIZE_CREATED = 8
+    NB_FEE_INTERVALS = 3
+    MAX_SIZE = 13
+    BLOCK_SIZE = 10     # data units
+    NB_TRANSACTION_CREATED = 3
+    TRANSACTION_SIZE_CREATED = 3
 
     def __init__(self):
         self.listTransactions = []
@@ -37,7 +37,7 @@ class Mempool():
 
     def generateNewTransactions(self):
         for index in range(0, Mempool.NB_TRANSACTION_CREATED):
-            newTransaction = Transaction(random.randint(0, Mempool.TRANSACTION_SIZE_CREATED))
+            newTransaction = Transaction(random.randint(1, Mempool.TRANSACTION_SIZE_CREATED))
             if self.mempoolSize + newTransaction.data_size < Mempool.MAX_SIZE:
                 self.listTransactions.append(newTransaction)
                 self.mempoolSize += newTransaction.data_size

@@ -11,8 +11,8 @@ import random
 class BackscatterBlockchainEnv3(gym.Env):
 
     # Network constants
-    TIME_FRAME = 10
-    BUSY_TIMESLOT = 3
+    TIME_FRAME = 5
+    BUSY_TIMESLOT = 2
     DATA_RATE = 0.5
     MAX_BACK = BUSY_TIMESLOT
     MAX_TRANS = TIME_FRAME - BUSY_TIMESLOT
@@ -21,7 +21,7 @@ class BackscatterBlockchainEnv3(gym.Env):
 
     # Blockchain Constants
     SUCCESS_RATE = 3
-    HASHRATE = 0.00
+    HASHRATE = 0.005
 
     def __init__(self):
 
@@ -50,13 +50,23 @@ class BackscatterBlockchainEnv3(gym.Env):
                                              Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY),
                                              Discrete(SecondTransmitor.QUEUE), Discrete(SecondTransmitor.ENERGY),
                                              Discrete(Mempool.MAX_SIZE), Discrete(Mempool.MAX_SIZE),
-                                             Discrete(Mempool.MAX_SIZE), Discrete(Mempool.MAX_SIZE),
                                              Discrete(Mempool.MAX_SIZE)))
 
+        self.array = [SecondTransmitor.QUEUE+1, SecondTransmitor.ENERGY+1,
+                      SecondTransmitor.QUEUE+1, SecondTransmitor.ENERGY+1,
+                      SecondTransmitor.QUEUE+1, SecondTransmitor.ENERGY+1,
+                      Mempool.MAX_SIZE+1, Mempool.MAX_SIZE+1, Mempool.MAX_SIZE+1]
+        self.array_size = len(self.array)
+        self.interval_value = [1] * self.array_size
+        for i in range(0, self.array_size):
+            self.interval_value[self.array_size - i - 1] = 1
+            for j in range(0, i):
+                self.interval_value[self.array_size-i-1] = self.interval_value[self.array_size-i-1] * self.array[self.array_size-1-j]
+
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST2 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST3 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
+        self.ST1 = SecondTransmitor(data_rate=0.1)
+        self.ST2 = SecondTransmitor(data_rate=0.15)
+        self.ST3 = SecondTransmitor(data_rate=0.2)
 
         self.viewer = None
         self.state = None
@@ -133,8 +143,7 @@ class BackscatterBlockchainEnv3(gym.Env):
                      self.ST2.queue, self.ST2.energy,
                      self.ST3.queue, self.ST3.energy,
                      self.mempool.mempoolState[0], self.mempool.mempoolState[1],
-                     self.mempool.mempoolState[2], self.mempool.mempoolState[3],
-                     self.mempool.mempoolState[4]]
+                     self.mempool.mempoolState[2]]
             self.state = tuple(state)
 
         else:   # in case, assignment is not suitable
@@ -154,8 +163,7 @@ class BackscatterBlockchainEnv3(gym.Env):
                      self.ST2.queue, self.ST2.energy,
                      self.ST3.queue, self.ST3.energy,
                      self.mempool.mempoolState[0], self.mempool.mempoolState[1],
-                     self.mempool.mempoolState[2], self.mempool.mempoolState[3],
-                     self.mempool.mempoolState[4]]
+                     self.mempool.mempoolState[2]]
             self.state = tuple(state)
 
         done = False
@@ -178,8 +186,7 @@ class BackscatterBlockchainEnv3(gym.Env):
                  self.ST2.queue, self.ST2.energy,
                  self.ST3.queue, self.ST3.energy,
                  self.mempool.mempoolState[0], self.mempool.mempoolState[1],
-                 self.mempool.mempoolState[2], self.mempool.mempoolState[3],
-                 self.mempool.mempoolState[4]]
+                 self.mempool.mempoolState[2]]
         self.state = tuple(state)
         print(self.state)
         self.steps_beyond_done = None
@@ -215,7 +222,7 @@ class BackscatterBlockchainEnv3(gym.Env):
         """
         raise NotImplementedError()
 
-# env = BackscatterEnv3()
-# env.reset()
-# for index in range(0, 1000):
-#     env.step(env.action_space.sample())
+env = BackscatterBlockchainEnv3()
+env.reset()
+print(env.array)
+print(env.interval_value)

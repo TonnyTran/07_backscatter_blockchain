@@ -68,8 +68,8 @@ print(model.summary())
 memory = SequentialMemory(limit=50000, window_length=1)
 policy = EpsGreedyQPolicy()
 
-version = "4.0_05"
-nb_steps = 2000000
+version = "1.0"
+nb_steps = 10000000
 nb_max_episode_steps = 200
 anneal_steps = 1000000
 processor = BackscatterProcessor3()

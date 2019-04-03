@@ -1,8 +1,8 @@
 import random
 
 class SecondTransmitor():
-    QUEUE = 10
-    ENERGY = 5
+    QUEUE = 3
+    ENERGY = 3
     def __init__(self, energy_harvest = 1, data_backscatter = 1, energy_transmit = 1, data_transmit = 1, data_rate = 0.5):
         self.queue = random.randint(0, SecondTransmitor.QUEUE)
         self.energy = random.randint(0, SecondTransmitor.ENERGY)
