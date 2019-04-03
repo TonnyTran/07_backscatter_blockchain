@@ -3,19 +3,19 @@ from xlrd import open_workbook
 import xlsxwriter
 
 interval = 20
-book = open_workbook('../results/result_v2.0.xls')
+book = open_workbook('../results/result_v2.0_e.xls')
 book2 = open_workbook('../results/result_rand_v2.0.xls')
 book3 = open_workbook('../results/result_htt_v2.0.xls')
-book4 = open_workbook('../results/result_v2.0_e.xls')
+book4 = open_workbook('../results/result_bc_v2.0.xls')
 sheet = book.sheet_by_index(0)
 sheet2 = book2.sheet_by_index(0)
 sheet3 = book3.sheet_by_index(0)
 sheet4 = book4.sheet_by_index(0)
 
-file_name = '../result_draw/convergence.xlsx'
+file_name = '../result_draw/v2.0_convergence.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
-column = 2
+column = 1
 
 nbrows = min(sheet.nrows, sheet2.nrows, sheet4.nrows, sheet4.nrows)
 
@@ -49,9 +49,9 @@ for ave_index in range(0, len(Y1)/interval-1):
 workbook.close()
 plt.xlabel('x' + str(interval) + 'Number of episodes')
 plt.ylabel('Transaction fee per data unit')
-plt.plot(X, Y1_average, 'r', label="DQN", zorder=10)
-plt.plot(X, Y2_average, 'b', label="Random", zorder=10)
-plt.plot(X, Y3_average, 'y', label="HTT", zorder=10)
-plt.plot(X, Y4_average, 'g', label="BC", zorder=10)
+plt.plot(X, Y1_average, label="DQN", zorder=10)
+plt.plot(X, Y2_average, label="Random", zorder=10)
+plt.plot(X, Y3_average, label="HTT", zorder=10)
+plt.plot(X, Y4_average, label="BC", zorder=10)
 plt.legend()
 plt.show()
