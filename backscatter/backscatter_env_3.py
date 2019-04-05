@@ -54,9 +54,9 @@ class BackscatterBlockchainEnv3(gym.Env):
                                              Discrete(Mempool.MAX_SIZE)))
 
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST2 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST3 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
+        self.ST1 = SecondTransmitor(data_rate=0.2)
+        self.ST2 = SecondTransmitor(data_rate=0.3)
+        self.ST3 = SecondTransmitor(data_rate=0.4)
 
         self.viewer = None
         self.state = None
@@ -89,14 +89,28 @@ class BackscatterBlockchainEnv3(gym.Env):
         queue3 = self.ST3.queue
         energy3 = self.ST3.energy
         if(harvest >= 0) and (idle_time >= 0):
-            harvest_time_1 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1
-            harvest_time_2 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_2
-            harvest_time_3 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_3
 
             # Step 1: data is transmitted to gateway
-            data_transmitted += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
-            data_transmitted += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
-            data_transmitted += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
+            # 01. all STs harvest
+            data_transmitted += self.ST1.harvest(harvest)
+            data_transmitted += self.ST2.harvest(harvest)
+            data_transmitted += self.ST3.harvest(harvest)
+            # 02. When ST1 backscatters
+            data_transmitted += self.ST1.backscatter(backscatter_time_1)
+            data_transmitted += self.ST2.harvest(backscatter_time_1)
+            data_transmitted += self.ST3.harvest(backscatter_time_1)
+            # 03. When ST2 backscatters
+            data_transmitted += self.ST1.harvest(backscatter_time_2)
+            data_transmitted += self.ST2.backscatter(backscatter_time_2)
+            data_transmitted += self.ST3.harvest(backscatter_time_2)
+            # 04. When ST3 backscatters
+            data_transmitted += self.ST1.harvest(backscatter_time_3)
+            data_transmitted += self.ST2.harvest(backscatter_time_3)
+            data_transmitted += self.ST3.backscatter(backscatter_time_3)
+            # 05. 3 STs transmits data subsequently
+            data_transmitted += self.ST1.transmit(transmit_time_1)
+            data_transmitted += self.ST2.transmit(transmit_time_2)
+            data_transmitted += self.ST3.transmit(transmit_time_3)
 
             # Step 2: User's transaction initialization
             self.userTransaction = Transaction(data_transmitted)

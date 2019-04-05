@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from xlrd import open_workbook
 
 # book = open_workbook('../results/result_v0.2_DDQN.xls')
-book = open_workbook('../results/result_v3.10.xls')
+book = open_workbook('../results/result_v3.0_n_5.xls')
 
 sheet = book.sheet_by_index(0)
 interval = 10
