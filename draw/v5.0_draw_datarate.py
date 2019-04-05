@@ -3,14 +3,14 @@ from xlrd import open_workbook
 import xlsxwriter
 import numpy as np
 
-file_name = '../result_draw/v4.0_busy_slot_fee.xlsx'
+file_name = '../result_draw/v5.0_datarate_fee.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
 X = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-column = 1
+column = 4
 
 book1 = open_workbook('../results/result_v5_01.xls')
-book2 = open_workbook('../results/result_v5_02_2.xls')
+book2 = open_workbook('../results/result_v5_02.xls')
 book3 = open_workbook('../results/result_v5_03.xls')
 book4 = open_workbook('../results/result_v5_04.xls')
 book5 = open_workbook('../results/result_v5_05.xls')
