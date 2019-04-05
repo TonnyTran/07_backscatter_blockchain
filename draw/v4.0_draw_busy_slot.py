@@ -7,7 +7,7 @@ file_name = '../result_draw/v4.0_busy_slot_fee.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
 X = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-column = 4
+column = 2
 
 book1 = open_workbook('../results/result_v4_01.xls')
 book2 = open_workbook('../results/result_v4_02.xls')

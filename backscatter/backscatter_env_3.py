@@ -12,7 +12,7 @@ class BackscatterBlockchainEnv3(gym.Env):
 
     # Network constants
     TIME_FRAME = 10
-    BUSY_TIMESLOT = 9
+    BUSY_TIMESLOT = 4
     DATA_RATE = 0.4
     MAX_BACK = BUSY_TIMESLOT
     MAX_TRANS = TIME_FRAME - BUSY_TIMESLOT

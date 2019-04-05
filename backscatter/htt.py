@@ -3,7 +3,7 @@ import numpy as np
 from backscatter_env_3 import BackscatterBlockchainEnv3
 from rl.core import Processor
 
-version = "4_09"
+version = "5_10"
 nb_steps = 100000
 nb_max_episode_steps = 200
 

@@ -217,24 +217,24 @@ class Agent(object):
                 episode_step += 1
                 self.step += 1
 
-                # if (500000 <= self.step < 560000):
-                #     sheet_step.write(self.step - 499999, 0, str(self.step - 499999))
-                #     sheet_step.write(self.step - 499999, 1, str(r[4]))
-                #     sheet_step.write(self.step - 499999, 2, str(r[5]))
-                #     sheet_step.write(self.step - 499999, 3, str(r[6]))
-                #     sheet_step.write(self.step - 499999, 4, str(r[7]))
-                #     sheet_step.write(self.step - 499999, 5, str(r[8]))
-                #     sheet_step.write(self.step - 499999, 6, str(r[9]))
-                #     sheet_step.write(self.step - 499999, 7, str(r[10]))
-                #     sheet_step.write(self.step - 499999, 8, str(r[11]))
-                #     sheet_step.write(self.step - 499999, 9, str(r[12]))
-                #     sheet_step.write(self.step - 499999, 10, str(r[13]))
-                #     sheet_step.write(self.step - 499999, 11, str(r[14]))
-                #     sheet_step.write(self.step - 499999, 12, str(r[15]))
-                #     sheet_step.write(self.step - 499999, 13, str(r[16]))
-                #     sheet_step.write(self.step - 499999, 14, str(r[17]))
-                #     sheet_step.write(self.step - 499999, 15, str(r[18]))
-                #
+                if 1500000 <= self.step < 1560000:
+                    sheet_step.write(self.step - 1499999, 0, str(self.step - 1499999))
+                    sheet_step.write(self.step - 1499999, 1, str(r[3]))
+                    sheet_step.write(self.step - 1499999, 2, str(r[4]))
+                    sheet_step.write(self.step - 1499999, 3, str(r[5]))
+                    sheet_step.write(self.step - 1499999, 4, str(r[6]))
+                    sheet_step.write(self.step - 1499999, 5, str(r[7]))
+                    sheet_step.write(self.step - 1499999, 6, str(r[8]))
+                    sheet_step.write(self.step - 1499999, 7, str(r[9]))
+                    sheet_step.write(self.step - 1499999, 8, str(r[10]))
+                    sheet_step.write(self.step - 1499999, 9, str(r[11]))
+                    sheet_step.write(self.step - 1499999, 10, str(r[12]))
+                    sheet_step.write(self.step - 1499999, 11, str(r[13]))
+                    sheet_step.write(self.step - 1499999, 12, str(r[14]))
+                    sheet_step.write(self.step - 1499999, 13, str(r[15]))
+                    sheet_step.write(self.step - 1499999, 14, str(r[16]))
+                    sheet_step.write(self.step - 1499999, 15, str(r[17]))
+
                 if done:
                     # We are in a terminal state but the agent hasn't yet seen it. We therefore
                     # perform one more forward-backward call and simply ignore the action before

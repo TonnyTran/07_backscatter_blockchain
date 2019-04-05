@@ -31,13 +31,13 @@ for row_index in xrange(1, nbrows):
     Y4.append(float(y4))
 
 for ave_index in range(0, len(Y1)/interval-1):
-    Y1_ave = sum(Y1[ave_index*interval:((ave_index+1)*interval)]) / interval/200
+    Y1_ave = sum(Y1[ave_index*interval:((ave_index+1)*interval)]) / interval
     Y1_average.append(Y1_ave)
-    Y2_ave = sum(Y2[ave_index * interval:((ave_index + 1) * interval)]) / interval/200
+    Y2_ave = sum(Y2[ave_index * interval:((ave_index + 1) * interval)]) / interval
     Y2_average.append(Y2_ave)
-    Y3_ave = sum(Y3[ave_index * interval:((ave_index + 1) * interval)]) / interval/200
+    Y3_ave = sum(Y3[ave_index * interval:((ave_index + 1) * interval)]) / interval
     Y3_average.append(Y3_ave)
-    Y4_ave = sum(Y4[ave_index * interval:((ave_index + 1) * interval)]) / interval/200
+    Y4_ave = sum(Y4[ave_index * interval:((ave_index + 1) * interval)]) / interval
     Y4_average.append(Y4_ave)
     X.append(ave_index)
     worksheet.write(ave_index + 1, 0, str(ave_index))

@@ -36,6 +36,36 @@ class SecondTransmitor():
         # return number of data transferred
         return throughtput
 
+    def harvest(self, harvest_time):
+        throughtput = 0
+        # harvest phase
+        self.energy += harvest_time * self.energy_harvest
+        self.energy = min(self.energy, SecondTransmitor.ENERGY)
+        # return number of data transferred
+        return throughtput
+
+    def backscatter(self, backscatter_time):
+        throughtput = 0
+        # backscatter phase
+        backscatter_time = min(backscatter_time, self.queue/self.data_backscatter)
+        data_transfer = backscatter_time * self.data_backscatter
+        throughtput += data_transfer
+        self.queue -= data_transfer
+        # return number of data transferred
+        return throughtput
+
+    def transmit(self, transmit_time):
+        throughtput = 0
+        # transmit phase
+        transmit_time = min(transmit_time, self.queue/self.data_transmit, self.energy/self.energy_transmit)
+        data_transfer = transmit_time * self.data_transmit
+        energy_lose = transmit_time * self.energy_transmit
+        self.queue -= data_transfer
+        self.energy -= energy_lose
+        throughtput += data_transfer
+        # return number of data transferred
+        return throughtput
+
     def generateData(self):
         # generate data
         nb_data = 0
