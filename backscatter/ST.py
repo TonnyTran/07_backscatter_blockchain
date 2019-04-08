@@ -74,6 +74,11 @@ class SecondTransmitor():
                 nb_data += 1
         self.queue = min(SecondTransmitor.QUEUE, self.queue + nb_data)
 
+    def generateUniformData(self):
+        # generate data
+        nb_data = random.randint(0, 2 * 10 * self.data_rate)
+        self.queue = min(SecondTransmitor.QUEUE, self.queue + nb_data)
+
     def reset(self):
         self.queue = random.randint(0, SecondTransmitor.QUEUE)
         self.energy = random.randint(0, SecondTransmitor.ENERGY)

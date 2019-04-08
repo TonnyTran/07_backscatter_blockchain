@@ -7,7 +7,7 @@ from mpl_toolkits.mplot3d import axes3d
 
 class ActionAnalysis():
     def __init__(self):
-        book = open_workbook('../results/result_v5_04.xls')
+        book = open_workbook('../results/result_v3.3_1.xls')
         self.sheet = book.sheet_by_index(1)
         self.frequency = np.zeros((6, 6), dtype=int)
         self.actionsum = np.zeros((6, 6), dtype=int)
@@ -19,9 +19,9 @@ class ActionAnalysis():
 
     def update(self):
         for index in range(1, self.sheet.nrows):
-            q = int(self.sheet.cell_value(index, 11))
-            e = int(self.sheet.cell_value(index, 12))
-            time = int(self.sheet.cell_value(index, 14))
+            q = int(self.sheet.cell_value(index, 6))
+            e = int(self.sheet.cell_value(index, 7))
+            time = int(self.sheet.cell_value(index, 9))
             self.frequency[q][e] = self.frequency[q][e] + 1
             self.actionsum[q][e] = self.actionsum[q][e] + time
 
