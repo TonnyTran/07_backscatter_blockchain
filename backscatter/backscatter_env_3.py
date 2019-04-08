@@ -12,8 +12,8 @@ class BackscatterBlockchainEnv3(gym.Env):
 
     # Network constants
     TIME_FRAME = 10
-    BUSY_TIMESLOT = 9
-    DATA_RATE = 0.4
+    BUSY_TIMESLOT = 4
+    DATA_RATE = 0.0
     MAX_BACK = BUSY_TIMESLOT
     MAX_TRANS = TIME_FRAME - BUSY_TIMESLOT
     MAX_NB_ACT_BACK = (MAX_BACK + 1) * (MAX_BACK + 2) * (MAX_BACK + 3) / 6
@@ -21,7 +21,7 @@ class BackscatterBlockchainEnv3(gym.Env):
 
     # Blockchain Constants
     SUCCESS_RATE = 3
-    HASHRATE = 0.005
+    HASHRATE = 0.18
 
     def __init__(self):
 
@@ -54,9 +54,9 @@ class BackscatterBlockchainEnv3(gym.Env):
                                              Discrete(Mempool.MAX_SIZE)))
 
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST2 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
-        self.ST3 = SecondTransmitor(data_rate=BackscatterBlockchainEnv3.DATA_RATE)
+        self.ST1 = SecondTransmitor(data_rate=0.2)
+        self.ST2 = SecondTransmitor(data_rate=0.3)
+        self.ST3 = SecondTransmitor(data_rate=0.4)
 
         self.viewer = None
         self.state = None

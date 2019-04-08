@@ -68,10 +68,10 @@ print(model.summary())
 memory = SequentialMemory(limit=50000, window_length=1)
 policy = EpsGreedyQPolicy()
 
-version = "5_04"
+version = "6_18"
 nb_steps = 2000000
 nb_max_episode_steps = 200
-anneal_steps = 1000000
+anneal_steps = 800000
 processor = BackscatterProcessor3()
 dqn = DQNAgent(model=model, nb_actions=nb_actions, memory=memory, processor=processor, nb_steps_warmup=100,
                target_model_update=1e-2, policy=policy, vary_eps=True, strategy='exponential', anneal_steps=anneal_steps)

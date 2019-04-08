@@ -3,10 +3,10 @@ from xlrd import open_workbook
 import xlsxwriter
 
 interval = 20
-book = open_workbook('../results/result_v4_01.xls')
-book2 = open_workbook('../results/result_v4_02.xls')
-book3 = open_workbook('../results/result_v2.0_3.xls')
-book4 = open_workbook('../results/result_v2.0.xls')
+book = open_workbook('../results/result_v6_08.xls')
+book2 = open_workbook('../results/result_v6_09.xls')
+book3 = open_workbook('../results/result_v6_10.xls')
+book4 = open_workbook('../results/result_v6_07.xls')
 sheet = book.sheet_by_index(0)
 sheet2 = book2.sheet_by_index(0)
 sheet3 = book3.sheet_by_index(0)
@@ -15,7 +15,7 @@ sheet4 = book4.sheet_by_index(0)
 file_name = '../result_draw/convergence.xlsx'
 workbook = xlsxwriter.Workbook(file_name)
 worksheet = workbook.add_worksheet()
-column = 2
+column = 1
 
 nbrows = min(sheet.nrows, sheet2.nrows, sheet4.nrows, sheet4.nrows)
 
