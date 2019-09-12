@@ -11,9 +11,9 @@ import random
 class BackscatterBlockchainEnv3(gym.Env):
 
     # Network constants
-    TIME_FRAME = 10
-    BUSY_TIMESLOT = 3
-    DATA_RATE = 0.4
+    TIME_FRAME = 8
+    BUSY_TIMESLOT = 4
+    DATA_RATE = 0.3
     MAX_BACK = BUSY_TIMESLOT
     MAX_TRANS = TIME_FRAME - BUSY_TIMESLOT
     MAX_NB_ACT_BACK = (MAX_BACK + 1) * (MAX_BACK + 2) * (MAX_BACK + 3) / 6
@@ -21,7 +21,7 @@ class BackscatterBlockchainEnv3(gym.Env):
 
     # Blockchain Constants
     SUCCESS_RATE = 3
-    HASHRATE = 0.005
+    HASHRATE = 0.0
 
     def __init__(self):
 
@@ -54,9 +54,9 @@ class BackscatterBlockchainEnv3(gym.Env):
                                              Discrete(Mempool.MAX_SIZE)))
 
         # initialize Second Transmitters
-        self.ST1 = SecondTransmitor(data_rate=0.2)
+        self.ST1 = SecondTransmitor(data_rate=0.3)
         self.ST2 = SecondTransmitor(data_rate=0.3)
-        self.ST3 = SecondTransmitor(data_rate=0.4)
+        self.ST3 = SecondTransmitor(data_rate=0.3)
 
         self.viewer = None
         self.state = None
@@ -89,36 +89,36 @@ class BackscatterBlockchainEnv3(gym.Env):
         queue3 = self.ST3.queue
         energy3 = self.ST3.energy
         if(harvest >= 0) and (idle_time >= 0):
-            # harvest_time_1 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1
-            # harvest_time_2 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_2
-            # harvest_time_3 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_3
-            #
-            # # Step 1: data is transmitted to gateway
-            # data_transmitted += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
-            # data_transmitted += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
-            # data_transmitted += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
+            harvest_time_1 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_1
+            harvest_time_2 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_2
+            harvest_time_3 = BackscatterBlockchainEnv3.BUSY_TIMESLOT - backscatter_time_3
+
+            # Step 1: data is transmitted to gateway
+            data_transmitted += self.ST1.update(harvest_time_1, backscatter_time_1, transmit_time_1)
+            data_transmitted += self.ST2.update(harvest_time_2, backscatter_time_2, transmit_time_2)
+            data_transmitted += self.ST3.update(harvest_time_3, backscatter_time_3, transmit_time_3)
 
 
-            # 01. all STs harvest
-            data_transmitted += self.ST1.harvest(harvest)
-            data_transmitted += self.ST2.harvest(harvest)
-            data_transmitted += self.ST3.harvest(harvest)
-            # 02. When ST1 backscatters
-            data_transmitted += self.ST1.backscatter(backscatter_time_1)
-            data_transmitted += self.ST2.harvest(backscatter_time_1)
-            data_transmitted += self.ST3.harvest(backscatter_time_1)
-            # 03. When ST2 backscatters
-            data_transmitted += self.ST1.harvest(backscatter_time_2)
-            data_transmitted += self.ST2.backscatter(backscatter_time_2)
-            data_transmitted += self.ST3.harvest(backscatter_time_2)
-            # 04. When ST3 backscatters
-            data_transmitted += self.ST1.harvest(backscatter_time_3)
-            data_transmitted += self.ST2.harvest(backscatter_time_3)
-            data_transmitted += self.ST3.backscatter(backscatter_time_3)
-            # 05. 3 STs transmits data subsequently
-            data_transmitted += self.ST1.transmit(transmit_time_1)
-            data_transmitted += self.ST2.transmit(transmit_time_2)
-            data_transmitted += self.ST3.transmit(transmit_time_3)
+            # # 01. all STs harvest
+            # data_transmitted += self.ST1.harvest(harvest)
+            # data_transmitted += self.ST2.harvest(harvest)
+            # data_transmitted += self.ST3.harvest(harvest)
+            # # 02. When ST1 backscatters
+            # data_transmitted += self.ST1.backscatter(backscatter_time_1)
+            # data_transmitted += self.ST2.harvest(backscatter_time_1)
+            # data_transmitted += self.ST3.harvest(backscatter_time_1)
+            # # 03. When ST2 backscatters
+            # data_transmitted += self.ST1.harvest(backscatter_time_2)
+            # data_transmitted += self.ST2.backscatter(backscatter_time_2)
+            # data_transmitted += self.ST3.harvest(backscatter_time_2)
+            # # 04. When ST3 backscatters
+            # data_transmitted += self.ST1.harvest(backscatter_time_3)
+            # data_transmitted += self.ST2.harvest(backscatter_time_3)
+            # data_transmitted += self.ST3.backscatter(backscatter_time_3)
+            # # 05. 3 STs transmits data subsequently
+            # data_transmitted += self.ST1.transmit(transmit_time_1)
+            # data_transmitted += self.ST2.transmit(transmit_time_2)
+            # data_transmitted += self.ST3.transmit(transmit_time_3)
 
             # Step 2: User's transaction initialization
             self.userTransaction = Transaction(data_transmitted)
@@ -145,12 +145,12 @@ class BackscatterBlockchainEnv3(gym.Env):
                 data_transmitted = 0
 
             # Step 6: environment is updated
-            # self.ST1.generateData()
-            # self.ST2.generateData()
-            # self.ST3.generateData()
-            self.ST1.generateUniformData()
-            self.ST2.generateUniformData()
-            self.ST3.generateUniformData()
+            self.ST1.generateData()
+            self.ST2.generateData()
+            self.ST3.generateData()
+            # self.ST1.generateUniformData()
+            # self.ST2.generateUniformData()
+            # self.ST3.generateUniformData()
 
             self.mempool.updateMempoolState()
 

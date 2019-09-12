@@ -7,7 +7,7 @@ from mpl_toolkits.mplot3d import axes3d
 
 class ActionAnalysis():
     def __init__(self):
-        book = open_workbook('../results/result_v3.0.xls')
+        book = open_workbook('../results/result_v3.0_n_10.xls')
         self.sheet = book.sheet_by_index(1)
         self.frequency = np.zeros((11, 6), dtype=int)
         self.actionsum = np.zeros((11, 6), dtype=int)
@@ -15,13 +15,13 @@ class ActionAnalysis():
         self.filename = '../result_draw/harvest_action3.xlsx'
         self.update()
         self.storeFile()
-        self.draw3D()
+        # self.draw3D()
 
     def update(self):
         for index in range(1, self.sheet.nrows):
-            q = int(self.sheet.cell_value(index, 6))
-            e = int(self.sheet.cell_value(index, 7))
-            time = int(self.sheet.cell_value(index, 9))
+            q = int(self.sheet.cell_value(index, 1))
+            e = int(self.sheet.cell_value(index, 2))
+            time = int(self.sheet.cell_value(index, 5))
             self.frequency[q][e] = self.frequency[q][e] + 1
             self.actionsum[q][e] = self.actionsum[q][e] + time
 
@@ -29,6 +29,7 @@ class ActionAnalysis():
             for c in range(0, 6):
                 if (self.frequency[r][c] > 0):
                     self.actresult[r][c] = self.actionsum[r][c] * 1.0 / self.frequency[r][c]
+        print (self.frequency)
         print (self.actresult)
 
     def draw3D(self):

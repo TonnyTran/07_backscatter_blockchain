@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 class SecondTransmitor():
     QUEUE = 5
@@ -69,14 +70,14 @@ class SecondTransmitor():
     def generateData(self):
         # generate data
         nb_data = 0
-        for i in range(10):
+        for i in range(12):
             if (random.uniform(0, 1) < self.data_rate):
                 nb_data += 1
         self.queue = min(SecondTransmitor.QUEUE, self.queue + nb_data)
 
     def generateUniformData(self):
         # generate data
-        nb_data = random.randint(0, 2 * 10 * self.data_rate)
+        nb_data = np.random.poisson(10*self.data_rate, 1)[0]
         self.queue = min(SecondTransmitor.QUEUE, self.queue + nb_data)
 
     def reset(self):

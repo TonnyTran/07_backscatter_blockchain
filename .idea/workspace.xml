@@ -2,18 +2,132 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17f0776b-d4cd-41ba-9fd1-2f105249f691" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backscatter/action_alanysis_3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/result_v3.0_n_5_2.xls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/result_v3.0_n_5_3.xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/draw/v8.0_timeframe.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/draw/v8.0_timeframe_throughput.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/05_backscatter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/05_backscatter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backscatter/ST.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/ST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backscatter/action_alanysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/action_alanysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backscatter/action_alanysis_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/action_alanysis_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backscatter/action_alanysis_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/action_alanysis_3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backscatter/backscatter_env_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/backscatter_env_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backscatter/bc.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/bc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backscatter/dqn_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/dqn_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backscatter/htt.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/htt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backscatter/rand_poplicy.py" beforeDir="false" afterPath="$PROJECT_DIR$/backscatter/rand_poplicy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draw/draw01.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/draw01.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/draw/draw3.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/draw3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/draw/v4.0_draw_busy_slot.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw/v4.0_draw_busy_slot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result_draw/convergence.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/result_draw/convergence.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result_draw/harvest_action3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/result_draw/harvest_action3.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_draw/v4.0_busy_slot_fee.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/result_draw/v4.0_busy_slot_fee.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v2.0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v2.0_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v4_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_bc_v5_10.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v2.0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v2.0_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v4_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_htt_v5_10.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v2.0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v2.0_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v4_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_rand_v5_10.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v2.0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v2.0_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v2.0_e.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v2.0_e3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v2.2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.03_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.03_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.03_3_n.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.04_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.04_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.04_3_n.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.0_n_10.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.0_n_5.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.0_n_5_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.0_n_5_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.10.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.3_1.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.3_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.3_3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.4_1.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v3.4_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v4_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_01.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_02.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_02_2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_03.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_04.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_05.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_06.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_07.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_08.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_09.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/result_v5_10.xls" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/rl/agents/dqn.py" beforeDir="false" afterPath="$PROJECT_DIR$/rl/agents/dqn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save_weight/dqn_backscatter_blockchain_weights.h5f" beforeDir="false" afterPath="$PROJECT_DIR$/save_weight/dqn_backscatter_blockchain_weights.h5f" afterDir="false" />
     </list>
@@ -22,119 +136,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backscatter/dqn_run.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="73" column="22" lean-forward="true" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <marker date="1554690515921" expanded="true" signature="432:437" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1406">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/draw/draw3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backscatter/ST.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
-              <folding>
-                <marker date="1554690442202" expanded="true" signature="69:74" ph="..." />
-                <marker date="1554690442202" expanded="true" signature="634:643" ph="..." />
-                <marker date="1554690442202" expanded="true" signature="2654:3080" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/draw/draw01.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rl/core.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="184" selection-start-line="184" selection-end-line="184" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rl/agents/dqn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis_2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backscatter/backscatter_env_3.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <marker date="1554690515925" expanded="true" signature="10173:10179" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -155,120 +156,30 @@
       <find>episode_reward</find>
       <find>/200</find>
       <find>499999</find>
-      <find>generateData</find>
+      <find>TIME_FRAME = 8</find>
+      <find>nb_max_start_steps</find>
+      <find>nb_max_episode_steps</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/backscatter/secondtransmitor.py" />
-        <option value="$PROJECT_DIR$/backscatter/backscatter_only.py" />
-        <option value="$PROJECT_DIR$/backscatter/backscatter_env.py" />
-        <option value="$PROJECT_DIR$/backscatter/backscatter_env_4.py" />
-        <option value="$PROJECT_DIR$/backscatter/random.py" />
-        <option value="$PROJECT_DIR$/backscatter/backscatter02_env.py" />
-        <option value="$PROJECT_DIR$/draw/draw_fee.py" />
-        <option value="$PROJECT_DIR$/draw/draw_idle_prob.py" />
-        <option value="$PROJECT_DIR$/draw/draw_busy_slot_datawait.py" />
-        <option value="$PROJECT_DIR$/draw/draw_data_rate_datawait.py" />
-        <option value="$PROJECT_DIR$/draw/draw_data_rate.py" />
-        <option value="$PROJECT_DIR$/backscatter/ql_run.py" />
-        <option value="$PROJECT_DIR$/backscatter/action_space.py" />
-        <option value="$PROJECT_DIR$/draw/draw2.py" />
-        <option value="$PROJECT_DIR$/backscatter/mempool.py" />
-        <option value="$PROJECT_DIR$/draw/draw4.py" />
-        <option value="$PROJECT_DIR$/draw/draw_busy_slot.py" />
-        <option value="$PROJECT_DIR$/draw/v4.0_draw_busy_slot.py" />
-        <option value="$PROJECT_DIR$/draw/draw_v2.0.py" />
-        <option value="$PROJECT_DIR$/backscatter/htt.py" />
-        <option value="$PROJECT_DIR$/backscatter/rand_poplicy.py" />
-        <option value="$PROJECT_DIR$/backscatter/bc.py" />
-        <option value="$PROJECT_DIR$/rl/core.py" />
-        <option value="$PROJECT_DIR$/backscatter/action_alanysis.py" />
-        <option value="$PROJECT_DIR$/draw/v5.0_draw_datarate.py" />
-        <option value="$PROJECT_DIR$/draw/draw01.py" />
-        <option value="$PROJECT_DIR$/draw/draw3.py" />
-        <option value="$PROJECT_DIR$/backscatter/action_alanysis_2.py" />
-        <option value="$PROJECT_DIR$/rl/agents/dqn.py" />
-        <option value="$PROJECT_DIR$/backscatter/action_alanysis_3.py" />
-        <option value="$PROJECT_DIR$/backscatter/ST.py" />
-        <option value="$PROJECT_DIR$/backscatter/dqn_run.py" />
-        <option value="$PROJECT_DIR$/backscatter/backscatter_env_3.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="468" />
-    <option name="y" value="44" />
-    <option name="width" value="1396" />
-    <option name="height" value="1012" />
-  </component>
+  <component name="ProjectId" id="1QiakGDcwUrLa2au8Ft5pLXR1dJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Changed Files'; set:Changed Files; ALL; class com.intellij.packageDependencies.ChangeListScope">
-          <expand>
-            <path>
-              <item name="05_backscatter" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="07_backscatter_blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="07_backscatter_blockchain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="07_backscatter_blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="07_backscatter_blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="backscatter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="07_backscatter_blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="07_backscatter_blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="draw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="07_backscatter_blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="07_backscatter_blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="result_draw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="07_backscatter_blockchain" type="b2602c69:ProjectViewProjectNode" />
-              <item name="07_backscatter_blockchain" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../05_backscatter" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/results" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/backscatter" />
       <recent name="$PROJECT_DIR$/draw" />
+      <recent name="$PROJECT_DIR$/results" />
+      <recent name="$PROJECT_DIR$/backscatter" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/results" />
     </key>
   </component>
@@ -285,70 +196,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.dqn_run">
-    <configuration name="action_alanysis_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="05_backscatter" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backscatter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backscatter/action_alanysis_2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="action_alanysis_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="05_backscatter" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backscatter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backscatter/action_alanysis_3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="backscatter_env_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="05_backscatter" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/backscatter" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/backscatter/backscatter_env_3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dqn_run" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
+    <configuration name="dqn_run" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="05_backscatter" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -390,19 +238,82 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="v4.0_draw_busy_slot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="05_backscatter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/draw" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/draw/v4.0_draw_busy_slot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="v8.0_timeframe" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true">
+      <module name="05_backscatter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/draw" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/draw/v8.0_timeframe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="v8.0_timeframe_throughput" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="05_backscatter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/draw" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/draw/v8.0_timeframe_throughput.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.action_alanysis_2" />
-      <item itemvalue="Python.dqn_run" />
-      <item itemvalue="Python.action_alanysis_3" />
+      <item itemvalue="Python.v8.0_timeframe" />
       <item itemvalue="Python.draw3" />
-      <item itemvalue="Python.backscatter_env_3" />
+      <item itemvalue="Python.v4.0_draw_busy_slot" />
+      <item itemvalue="Python.dqn_run" />
+      <item itemvalue="Python.v8.0_timeframe_throughput" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.dqn_run" />
-        <item itemvalue="Python.backscatter_env_3" />
-        <item itemvalue="Python.action_alanysis_3" />
-        <item itemvalue="Python.action_alanysis_2" />
+        <item itemvalue="Python.v4.0_draw_busy_slot" />
+        <item itemvalue="Python.v8.0_timeframe_throughput" />
+        <item itemvalue="Python.v8.0_timeframe" />
         <item itemvalue="Python.draw3" />
       </list>
     </recent_temporary>
@@ -420,372 +331,17 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.18395196" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3291536" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="2" />
-      <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.3291536" />
-      <window_info anchor="bottom" id="Version Control" order="5" weight="0.3291536" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.3615465" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.39916405" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backscatter/state_space.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/channel_space.py" />
-    <entry file="file://$PROJECT_DIR$/backscatter/draft.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2/typing.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2717">
-          <caret line="389" column="12" lean-forward="true" selection-start-line="389" selection-start-column="12" selection-end-line="389" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/envs/registration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/spaces/box.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/envs/mujoco/mujoco_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="242" column="13" selection-start-line="242" selection-start-column="13" selection-end-line="242" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/cem_cartpole.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/envs/mujoco/half_cheetah.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="57" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/dqn_cartpole.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gym/gym/envs/robotics/robot_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/ddpg_mujoco.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="63" column="43" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/dqn_atari.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1247">
-          <caret line="81" column="9" selection-start-line="81" selection-end-line="81" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/htt0.3" />
-    <entry file="file://$PROJECT_DIR$/backscatter/backscatter_env_4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="18" column="96" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow/lib/python2.7/zipfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="755" selection-start-line="755" selection-end-line="755" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw_data_rate_datawait.py" />
-    <entry file="file://$PROJECT_DIR$/backscatter/ql_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="73" lean-forward="true" selection-start-line="14" selection-start-column="73" selection-end-line="14" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/backscatter02_env.py" />
-    <entry file="file://$PROJECT_DIR$/backscatter/backscatter_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="21" column="82" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rl/callbacks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/action_space.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="21" column="71" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow/lib/python2.7/site-packages/xlwt/Worksheet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="1087" selection-start-line="1087" selection-end-line="1087" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rl/policy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="170" column="8" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw_data_rate.py" />
-    <entry file="file://$PROJECT_DIR$/../06_federated_learning/federated_learning/ql_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/mempool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="45" selection-end-line="56" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw_v2.0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/v4.0_draw_busy_slot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/rand_poplicy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/bc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/htt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
-          <folding>
-            <element signature="e#225#1594#0" />
-            <element signature="e#267#731#0" />
-            <element signature="e#783#875#0" />
-            <element signature="e#928#1012#0" />
-            <element signature="e#1074#1594#0" />
-            <element signature="e#2018#2301#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/tensorflow/lib/python2.7/site-packages/xlrd/sheet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="414" selection-start-line="414" selection-end-line="414" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/v5.0_draw_datarate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw01.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/draw/draw3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rl/agents/dqn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1406">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/action_alanysis_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rl/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/ST.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
-          <folding>
-            <marker date="1554690442202" expanded="true" signature="69:74" ph="..." />
-            <marker date="1554690442202" expanded="true" signature="634:643" ph="..." />
-            <marker date="1554690442202" expanded="true" signature="2654:3080" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/backscatter_env_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1554690515925" expanded="true" signature="10173:10179" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backscatter/dqn_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="73" column="22" lean-forward="true" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1554690515921" expanded="true" signature="432:437" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
