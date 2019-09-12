@@ -398,11 +398,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.draw4" />
       <item itemvalue="Python.dqn_run" />
+      <item itemvalue="Python.draw3" />
+      <item itemvalue="Python.draw4" />
       <item itemvalue="Python.draw_v2.0" />
       <item itemvalue="Python.v4.0_draw_busy_slot" />
-      <item itemvalue="Python.draw3" />
     </list>
     <recent_temporary>
       <list>
